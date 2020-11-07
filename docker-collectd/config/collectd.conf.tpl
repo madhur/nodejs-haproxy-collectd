@@ -40,7 +40,7 @@ LoadPlugin uptime
         #pxname or svname to monitor
         ProxyMonitor "http-backend"
         ProxyMonitor "backend"
-        EnhancedMetrics 'False'
+        EnhancedMetrics 'True'
         # ExcludeMetric 'session_limit'
         # ExcludeMetric 'response_1xx'
     </Module>
