@@ -1,0 +1,24 @@
+version: "3"
+services:
+    webapp:
+        build: .
+       
+    haproxy:
+        image: eeacms/haproxy
+        depends_on:
+          - webapp
+        ports:
+            - 80:5000
+            - 1936:1936
+        environment:
+          BACKENDS: "webapp:3000"
+          DNS_ENABLED: "true"
+          LOG_LEVEL: "info"
+           
+    collectd:
+        build: docker-collectd/.
+        environment:
+          - GRAPHITE_PORT_2003_TCP_ADDR=1f814d74.carbon.hostedgraphite.com
+          - GRAPHITE_PORT_2003_TCP_PORT=2003
+          - GRAPHITE_PREFIX=4402db27-51b8-4ed1-8198-8bbc27473fe1
+
