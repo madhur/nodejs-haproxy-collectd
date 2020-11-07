@@ -25,6 +25,28 @@ LoadPlugin uptime
         ReportReserved true
 </Plugin>
 
+<LoadPlugin "python">
+    Globals true
+</LoadPlugin>
+
+<Plugin "python">
+    ModulePath "/usr/share/collectd/collectd-haproxy"
+
+    Import "haproxy"
+
+    <Module "haproxy">
+        Socket "haproxy:1999"
+        Interval 10
+        #pxname or svname to monitor
+        ProxyMonitor "http-backend"
+        ProxyMonitor "backend"
+        EnhancedMetrics 'False'
+        # ExcludeMetric 'session_limit'
+        # ExcludeMetric 'response_1xx'
+    </Module>
+</Plugin>
+
+
 <Include "/etc/collectd/collectd.conf.d">
     Filter "*.conf"
 </Include>

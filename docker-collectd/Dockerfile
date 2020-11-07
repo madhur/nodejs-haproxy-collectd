@@ -14,6 +14,8 @@ RUN apt-get update -yqq \
     supervisor \
     python-pip \
     python-setuptools \
+    libpython2.7 \
+    telnet \
     && pip install envtpl \
     && apt-get clean \
     && rm -rf \

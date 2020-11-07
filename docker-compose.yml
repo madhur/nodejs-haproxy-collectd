@@ -4,7 +4,7 @@ services:
         build: .
        
     haproxy:
-        image: eeacms/haproxy
+        build: docker-haproxy/.
         depends_on:
           - webapp
         ports:
@@ -21,4 +21,6 @@ services:
           - GRAPHITE_PORT_2003_TCP_ADDR=1f814d74.carbon.hostedgraphite.com
           - GRAPHITE_PORT_2003_TCP_PORT=2003
           - GRAPHITE_PREFIX=4402db27-51b8-4ed1-8198-8bbc27473fe1
+        volumes:
+          - ./docker-collectd/collectd-haproxy:/usr/share/collectd/collectd-haproxy
 
